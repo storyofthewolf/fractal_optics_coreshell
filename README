@@ -1,0 +1,54 @@
+Fractal Meanfield Scattering Code
+
+See Botet et al. 1997 "Mean-field approximation of Mie
+ scattering by fractal aggregates of identical spheres."
+ Applied Optics 36(33) 8791-8797
+
+Original code from P. Rannou and R. Botet.
+Translated to F90 by E.T. Wolf
+
+2014.07.01.  Wolf, E.T.  Added option to treat monomer particle with a mie coreshell calculation
+
+
+::::: Basic  Instructions :::::
+
+To build
+% make
+
+To run
+% fractaloptics.exe
+
+
+:::::: Input File ::::::::
+All model input is put in a text file named "INPUT" 
+See examples in IOFILES directory
+
+
+Format  of INPUT
+line 1:       (I5, L7),  N, do_miess
+line 2:       (A75), header
+line 3 to N:  (f10.4,      f10.5, f10.5, f12.1,    f5.2,  f5.2,       f10.5,    f5.1, f5.1,  f10.5, f10.5, f10.5)
+               wavelength, rfi,   rfr,   nmonomer, alpha, fractaldim, rmonomer, xv,   angle, rcore, rfiSH, rfrSH
+
+Descritpion of entries
+N           = number of entries in INPUT file
+do_miess    = to do mie coreshell calculation or not to do?
+header      = column titles for subsequent data
+wavelength  = wavelength in microns 
+rfi         = imaginary refractive index (core)
+rfr         = real refractive index (core)
+nmonomer    = number of monomers in the aggregate
+alpha       = fractal prefactor or "packing coefficient"
+fractaldim  = fractal dimension
+rmonomer    = radius of monomer particle in microns
+xv          = set to one
+angle       = set to zero 
+rcore       = radius of core, by definition the shell thickness is then rmonomer-rcore, only used if do_miess=T
+rfiSH       = imaginary refractive index of shell, only used if do_miess=T
+rfrSH       = real refractive index of shell, only used if do_miess=T
+
+
+::::: OUTPUT FILE ::::
+WVL(um), QEXT, QSCA, SINGSCAT, ASYM
+
+NOTE!! QEXT and QSCA are defined relative to the area of the equivalent spherical particle.
