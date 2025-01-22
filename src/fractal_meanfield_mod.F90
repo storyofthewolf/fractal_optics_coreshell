@@ -1025,7 +1025,7 @@ module fractal_meanfield_mod
 
 
     fx_vars%pbes=pp
-    fx_vars%kbes=fx_vars.k
+    fx_vars%kbes=fx_vars%k
 
     bound=0._f
     interv=1
